@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>EcoCondomínio • Vila di Lucca (Vargem Grande)</title>
+  <meta name="description" content="Aplicativo PWA para gestão de resíduos e educação ambiental do Condomínio Vila di Lucca, Vargem Grande, Florianópolis.">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <meta name="theme-color" content="#15803d">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header com gradiente verde -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon">🌱</div>
+        <div>
+          <div class="brand-title">EcoCondomínio</div>
+          <div class="brand-subtitle">Vila di Lucca • Vargem Grande</div>
+        </div>
+      </div>
+      <button id="btn-instalar-app" class="install-btn" style="display:none;">Instalar</button>
+    </header>
+
+    <!-- Viewport das 6 Telas -->
+    <main class="screens-viewport">
+      <!-- TELA 1: INÍCIO (HOME) -->
+      <section id="screen-home" class="screen active">
+        
+        <!-- CAPA CHAMATIVA DO SITE: CONDOMÍNIO SUSTENTÁVEL -->
+        <div style="border-radius:24px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.15); border:1px solid rgba(6,95,70,0.3); background:#0f172a; margin-bottom:14px;">
+          <!-- Imagem da Capa -->
+          <div style="position:relative; width:100%; height:230px; overflow:hidden;">
+            <img src="./condominio-sustentavel.jpg" alt="Condomínio Sustentável" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;" onerror="this.src='/condominio-sustentavel.jpg'">
+            <!-- Overlay escuro para legibilidade -->
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.6) 55%, rgba(0,0,0,0.2) 100%);"></div>
+            
+            <!-- Badges no topo -->
+            <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:999px; background:rgba(6,95,70,0.85); backdrop-filter:blur(8px); border:1px solid rgba(52,211,153,0.4); font-size:10px; font-weight:700; color:#d1fae5;">
+                🌱 Condomínio Sustentável
+              </span>
+              <span style="font-size:10px; font-weight:700; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.2); backdrop-filter:blur(8px); color:#fff;">
+                Vila di Lucca
+              </span>
+            </div>
+
+            <!-- Título e Subtítulo sobre a imagem -->
+            <div style="position:absolute; bottom:12px; left:12px; right:12px; color:#fff;">
+              <div style="font-size:11px; color:#6ee7b7; font-weight:600; margin-bottom:2px;">
+                📍 Vargem Grande • Florianópolis - SC
+              </div>
+              <h1 style="font-size:22px; font-weight:900; line-height:1.2; margin:0; text-shadow:0 2px 4px rgba(0,0,0,0.5);">
+                Condomínio Sustentável
+              </h1>
+              <p style="font-size:11px; color:#cbd5e1; margin:4px 0 0 0; line-height:1.3;">
+                Guia oficial de reciclagem, descarte correto e cronograma de coletas em um clique.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pílulas e Ação Rápida -->
+          <div style="padding:12px; background:linear-gradient(to bottom, #0f172a, #022c22); border-top:1px solid rgba(255,255,255,0.1); color:#fff;">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; text-align:center; font-size:10px;">
+              <div style="background:rgba(255,255,255,0.08); padding:6px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                <div style="color:#d8b4fe; font-weight:700;">3x / sem</div>
+                <div style="color:#cbd5e1; font-size:9px;">Rejeitos 07h</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.08); padding:6px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                <div style="color:#34d399; font-weight:700;">Seg 19h</div>
+                <div style="color:#cbd5e1; font-size:9px;">Seletiva Secos</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.08); padding:6px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                <div style="color:#5eead4; font-weight:700;">Qua 07h</div>
+                <div style="color:#cbd5e1; font-size:9px;">Só Vidros</div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:10px;">
+              <button data-goto="agenda" style="width:100%; background:#059669; color:#fff; font-weight:700; font-size:11px; padding:9px 6px; border:none; border-radius:12px; cursor:pointer;">
+                📅 Calendário
+              </button>
+              <button data-goto="guia" style="width:100%; background:rgba(255,255,255,0.15); color:#fff; font-weight:700; font-size:11px; padding:9px 6px; border:1px solid rgba(255,255,255,0.25); border-radius:12px; cursor:pointer;">
+                ♻️ Guia
+              </button>
+              <button id="btn-scroll-qr" style="width:100%; background:linear-gradient(to right, #0d9488, #059669); color:#fff; font-weight:700; font-size:11px; padding:9px 6px; border:1px solid rgba(52,211,153,0.3); border-radius:12px; cursor:pointer;">
+                📲 QR Code
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STATUS DE HOJE NO CONDOMÍNIO -->
+        <div class="card" style="border-left:4px solid #059669; padding:12px 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:11px; font-weight:800; text-transform:uppercase; color:#065f46;">
+              🔔 Coletas Regulares Oficiais Comcap
+            </span>
+            <span class="tag-badge tag-green">Papaquara & SC-403</span>
+          </div>
+          <div style="font-size:13px; font-weight:700; color:#0f172a; margin-top:4px;">
+            Ter, Qui e Sáb (07h): Rejeitos • Seg (19h): Seletiva • Qua (07h): Vidros
+          </div>
+          <p style="font-size:11px; color:#64748b; margin-top:2px; line-height:1.4;">
+            Morador: utilize os containers internos do condomínio. O zelador transporta para a calçada nos horários da coleta.
+          </p>
+        </div>
+
+        <!-- CARD DE ALERTA: NÃO SABE ONDE DESCARTAR? -->
+        <div class="card" style="background:linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border:1.5px solid #fde68a; border-radius:16px; padding:12px 14px; margin-top:12px; box-shadow:0 2px 8px rgba(245,158,11,0.08);">
+          <div style="display:flex; align-items:flex-start; gap:10px;">
+            <span style="font-size:24px; line-height:1; flex-shrink:0;">🚨</span>
+            <div style="flex:1;">
+              <strong style="font-size:14px; color:#92400e; display:block; margin-bottom:2px;">
+                Não sabe onde descartar?
+              </strong>
+              <p style="font-size:11.5px; color:#78350f; line-height:1.4; margin-bottom:10px;">
+                Móveis, entulho, óleo, eletrônicos e podas <strong>NÃO</strong> vão na lixeira comum. Consulte os Ecopontos e o serviço de Volumosos na aba "Pontos".
+              </p>
+              <button data-goto="pontos" style="background:#d97706; color:#ffffff; border:none; padding:8px 12px; font-size:11.5px; font-weight:800; border-radius:10px; width:100%; display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer;" type="button">
+                📍 Ver Pontos de Descarte
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRONOGRAMA RÁPIDO DE TUDO QUE O SITE TEM -->
+        <div style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div>
+              <div style="font-size:10px; font-weight:700; color:#059669; text-transform:uppercase;">Visão Geral Oficial</div>
+              <div style="font-size:15px; font-weight:800; color:#0f172a;">Cronograma Rápido do Site</div>
+            </div>
+            <span style="font-size:11px; font-weight:600; color:#64748b; background:#f1f5f9; padding:3px 8px; border-radius:8px;">
+              7 Recursos
+            </span>
+          </div>
+
+          <!-- Itens do Cronograma -->
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            
+            <!-- 1. Rejeitos -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="agenda">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">🗑️</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">1. Coleta Convencional de Rejeitos</strong>
+                    <span class="tag-badge tag-purple" style="font-size:9px;">Ter, Qui e Sáb • 07h</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Lixo comum e sanitário nos containers internos. Zelador posiciona para fora às 07h.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver Calendário →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Seletiva Secos -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="agenda">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">♻️</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">2. Coleta Seletiva de Secos</strong>
+                    <span class="tag-badge tag-green" style="font-size:9px;">Segundas • 19h</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Plásticos, papéis secos e metais (caixas de papelão desmontadas no abrigo de lixo).
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Regras da Seletiva →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Vidro Flex -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="agenda">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">🍾</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">3. Coleta Só de Vidros (Flex)</strong>
+                    <span class="tag-badge" style="background:#ccfbf1; color:#0f766e; font-size:9px;">Quartas • 07h</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Garrafas, potes e frascos inteiros. Caminhão Comcap exclusivo para vidros.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver Detalhes →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Podas e Verdes -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="agenda">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">🌿</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">4. Coleta de Podas & Verdes</strong>
+                    <span class="tag-badge tag-yellow" style="font-size:9px;">17 Datas em 2026</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Folhas e galhos em sacos de ráfia ou feixes. Cronograma oficial Vargem Grande.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver 17 Datas de Podas →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Guia Oficial Comcap -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="guia">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">📚</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">5. Guia Oficial: O Que Pode e Não Pode</strong>
+                    <span class="tag-badge tag-blue" style="font-size:9px;">Busca Instantânea</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Papel, Metal, Plástico, Vidro e Outros (Isopor/Tetra Pak) segundo a cartilha Comcap.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Consultar Resíduo →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Pontos de Descarte -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="pontos">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">📍</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">6. Pontos de Descarte</strong>
+                    <span class="tag-badge" style="background:#e0f2fe; color:#0369a1; font-size:9px;">Ecopontos & PEVs</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Ecopontos, volumosos e vidros
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver Detalhes →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Dicas de Convivência -->
+            <div class="card" style="margin:0; padding:10px 12px; cursor:pointer;" data-goto="dicas">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">💡</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">7. Dicas de Convivência</strong>
+                    <span class="tag-badge tag-green" style="font-size:9px;">Villa di Lucca</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Regras dos containers, encanamento, pets e boas práticas de convivência.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver Boas Práticas →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. Compartilhar App com QR Code -->
+            <div class="card" id="card-item-qrcode" style="margin:0; padding:10px 12px; cursor:pointer;">
+              <div style="display:flex; align-items:flex-start; gap:10px;">
+                <span style="font-size:22px;">📲</span>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong style="font-size:12px; color:#0f172a;">8. Compartilhar App (QR Code Moradores)</strong>
+                    <span class="tag-badge tag-green" style="font-size:9px;">Câmera</span>
+                  </div>
+                  <div style="font-size:11px; color:#64748b; margin-top:2px;">
+                    Aponte a câmera para abrir ou envie nos grupos de WhatsApp do condomínio.
+                  </div>
+                  <div style="font-size:11px; font-weight:700; color:#059669; margin-top:4px;">
+                    Ver QR Code ↓
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- BARRA COMPACTA: LIXEIRAS DO VILLA DI LUCCA -->
+        <div class="card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:14px; padding:10px 12px; margin-top:10px; margin-bottom:10px; box-shadow:0 2px 8px rgba(0,0,0,0.04); cursor:pointer;" data-goto="guia">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <div style="display:flex; align-items:center; gap:5px;">
+              <span style="font-size:14px;">🏢</span>
+              <strong style="font-size:12px; color:#0f172a; font-weight:800;">Lixeiras do Villa di Lucca:</strong>
+            </div>
+            <span style="font-size:10.5px; font-weight:700; color:#15803d;">Ver mais →</span>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+            <div style="background:#fff7ed; border:1px solid #fed7aa; border-radius:8px; padding:5px 3px; text-align:center;">
+              <div style="font-size:10px; font-weight:800; color:#c2410c;">🟠 Laranja</div>
+              <div style="font-size:9px; color:#9a3412; margin-top:1px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Orgânico / Rejeito</div>
+            </div>
+            <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:5px 3px; text-align:center;">
+              <div style="font-size:10px; font-weight:800; color:#0369a1;">🔵 Azul</div>
+              <div style="font-size:9px; color:#075985; margin-top:1px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Recicláveis</div>
+            </div>
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:5px 3px; text-align:center;">
+              <div style="font-size:10px; font-weight:800; color:#15803d;">🟢 Verde</div>
+              <div style="font-size:9px; color:#166534; margin-top:1px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Vidros</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD QR CODE PARA COMPARTILHAMENTO FÁCIL -->
+        <div id="qrcode-standalone-card" class="card" style="margin-top:16px; background:linear-gradient(135deg, #064e3b 0%, #022c22 100%); color:#fff; border:1px solid rgba(52,211,153,0.3); border-radius:22px; padding:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:22px;">📲</span>
+              <div>
+                <span class="tag-badge" style="background:rgba(52,211,153,0.2); color:#a7f3d0; font-size:9px; font-weight:700; text-transform:uppercase;">Compartilhe</span>
+                <div style="font-size:14px; font-weight:800; color:#fff;">QR Code do Condomínio</div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px; color:#d1fae5; line-height:1.4; margin:0 0 12px 0;">
+            Aponte a câmera do celular para abrir o app ou compartilhe com os vizinhos nos grupos de WhatsApp do <strong>Vila di Lucca</strong>.
+          </p>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px; background:rgba(255,255,255,0.06); padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,0.1);">
+            <div style="background:#fff; padding:10px; border-radius:14px; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+              <img id="standalone-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https%3A%2F%2Fais-pre-4quqfs2e3qp4varil2mwue-485239060533.us-west1.run.app&color=064e3b" alt="QR Code Vila di Lucca" style="width:160px; height:160px; display:block; border-radius:8px;">
+            </div>
+            <div style="width:100%;">
+              <div id="standalone-app-url" style="font-family:monospace; font-size:10px; background:rgba(0,0,0,0.3); padding:6px 8px; border-radius:8px; color:#6ee7b7; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:center;">
+                https://ais-pre-4quqfs2e3qp4varil2mwue-485239060533.us-west1.run.app
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+                <button id="btn-copy-standalone" style="background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.2); font-weight:700; font-size:11px; padding:8px; border-radius:10px; cursor:pointer;">
+                  📋 Copiar Link
+                </button>
+                <a id="btn-wa-standalone" href="https://wa.me/?text=EcoCondominio%20Vila%20di%20Lucca" target="_blank" style="background:#059669; color:#fff; font-weight:700; font-size:11px; padding:8px; border-radius:10px; text-decoration:none; text-align:center; display:block;">
+                  💬 WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:10px; color:#a7f3d0; margin-top:10px; display:flex; align-items:center; gap:6px;">
+            <span>💡</span>
+            <span><strong>Dica:</strong> Imprima o QR Code para fixar nos elevadores e no mural do condomínio!</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-title">Propósito Socioambiental</div>
+          <p class="card-desc" style="line-height:1.5;">
+            Aplicativo desenvolvido para promover a inclusão digital e a educação ambiental, gerando impacto socioambiental real no Condomínio Vila di Lucca e no bairro Vargem Grande.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
+            <div style="background:#fef3c7; border:1px solid #fde68a; padding:8px; border-radius:14px; font-size:11px;">
+              <strong>ODS 11</strong>
+              <div style="color:#78350f; font-size:10px;">Cidades Sustentáveis</div>
+            </div>
+            <div style="background:#ffedd5; border:1px solid #fed7aa; padding:8px; border-radius:14px; font-size:11px;">
+              <strong>ODS 12</strong>
+              <div style="color:#7c2d12; font-size:10px;">Consumo Responsável</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:#ecfdf5; border-color:#a7f3d0;">
+          <div style="font-size:12px; font-weight:700; color:#065f46; margin-bottom:4px;">Instruções de Navegação</div>
+          <p style="font-size:11px; color:#064e3b; line-height:1.4;">
+            Utilize a barra flutuante inferior para acessar a Agenda de Coletas, Guia por cores, Regras de Resíduos Verdes, PEVs e Sobre o Projeto. Funciona 100% offline!
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;">
+          <div class="card" style="margin:0; cursor:pointer;" data-goto="agenda">
+            <span style="font-size:24px;">📅</span>
+            <div style="font-size:13px; font-weight:700; margin-top:4px;">Agenda Comcap</div>
+            <div style="font-size:11px; color:#64748b;">Horários em Vargem Grande</div>
+          </div>
+          <div class="card" style="margin:0; cursor:pointer;" data-goto="guia">
+            <span style="font-size:24px;">♻️</span>
+            <div style="font-size:13px; font-weight:700; margin-top:4px;">Guia de Descarte</div>
+            <div style="font-size:11px; color:#64748b;">Lixeira Azul, Amarela...</div>
+          </div>
+          <div class="card" style="margin:0; cursor:pointer;" data-goto="dicas">
+            <span style="font-size:24px;">🌿</span>
+            <div style="font-size:13px; font-weight:700; margin-top:4px;">Verdes & Dicas</div>
+            <div style="font-size:11px; color:#64748b;">Regras para podas e condomínio</div>
+          </div>
+          <div class="card" style="margin:0; cursor:pointer;" data-goto="pontos">
+            <span style="font-size:24px;">📍</span>
+            <div style="font-size:13px; font-weight:700; margin-top:4px;">Pontos Comcap</div>
+            <div style="font-size:11px; color:#64748b;">PEV Vidro e Ecopontos</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 2: CALENDÁRIO DE COLETAS (AGENDA) -->
+      <section id="screen-agenda" class="screen">
+        <div class="card" style="background:linear-gradient(135deg, #1d4ed8, #3b82f6); color:#fff; border:none;">
+          <span class="tag-badge" style="background:rgba(255,255,255,0.25); color:#fff;">Vargem Grande / Rio Vermelho</span>
+          <h2 style="font-size:18px; font-weight:800; margin-top:6px;">Calendário de Coletas</h2>
+          <p style="font-size:11px; opacity:0.9;">Horários e regras oficiais da Comcap para o nosso setor.</p>
+        </div>
+
+        <!-- 1. Rejeitos -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="tag-badge tag-purple">Convencional</span>
+            <span style="font-size:11px; font-weight:700; color:#64748b;">Ter, Qui e Sáb • 07h</span>
+          </div>
+          <div class="card-title" style="margin-top:6px;">1. Rejeitos (Lixo Convencional)</div>
+          <p style="font-size:12px; color:#334155; margin-bottom:8px;">
+            <strong>Dias:</strong> Terças, Quintas e Sábados às 7h da manhã.<br>
+            <strong>O que vai:</strong> Lixo comum, fraldas, papel higiênico, esponjas usadas e rejeitos não recicláveis.
+          </p>
+          <div style="font-size:11px; background:#f0fdf4; padding:8px; border-radius:12px; border:1px solid #bbf7d0; color:#166534;">
+            🏢 <em>Moradores depositam nos containers internos do condomínio. O zelador faz o transporte para a rua antes da passagem do caminhão.</em>
+          </div>
+        </div>
+
+        <!-- 2. Recicláveis Secos -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="tag-badge tag-blue">Coleta Seletiva</span>
+            <span style="font-size:11px; font-weight:700; color:#1d4ed8;">Segundas • 19h</span>
+          </div>
+          <div class="card-title" style="margin-top:6px;">2. Recicláveis Secos (Comcap)</div>
+          <p style="font-size:12px; color:#334155; margin-bottom:8px;">
+            <strong>Segundas-feiras às 19h:</strong> Metal, plástico, papel e papelão.<br>
+            <strong>Containers internos:</strong> Deposite no container de recicláveis secos dentro do condomínio.<br>
+            <strong>Regra de ouro:</strong> Caixas de papelão deverão ser abertas/desmontadas antes de serem descartadas no compartimento de lixo.
+          </p>
+        </div>
+
+        <!-- 3. Coleta de Vidro -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="tag-badge tag-green">Rota VN08 Flex</span>
+            <span style="font-size:11px; font-weight:700; color:#15803d;">Quartas • 07h</span>
+          </div>
+          <div class="card-title" style="margin-top:6px;">3. Coleta de Vidro (Seletiva Flex)</div>
+          <p style="font-size:12px; color:#334155; margin-bottom:8px;">
+            <strong>Dia:</strong> Quartas-feiras às 7h da manhã.<br>
+            <strong>Rota:</strong> VN08 (Comcap Caminhão Exclusivo de Vidros).<br>
+            O vidro é recolhido separadamente e 100% doado a associações de triadores. Deposite no container/área de vidros do condomínio.
+          </p>
+        </div>
+
+        <!-- 4. Coleta de Verdes -->
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="tag-badge tag-orange">17 Coletas Oficiais</span>
+            <span style="font-size:11px; font-weight:700; color:#c2410c;">Às 7h da manhã</span>
+          </div>
+          <div class="card-title" style="margin-top:6px;">4. Coleta de Verdes (Podas e Jardins) - 2026</div>
+          <p style="font-size:11px; color:#64748b; margin-bottom:8px;">
+            Disponha os resíduos na rua às 7h, no alinhamento frontal do terreno.
+          </p>
+          <div class="grid-datas">
+            <div class="data-chip"><div class="data-mes">Jan</div><div class="data-dia">12/01</div></div>
+            <div class="data-chip"><div class="data-mes">Fev</div><div class="data-dia">02/02</div></div>
+            <div class="data-chip"><div class="data-mes">Fev</div><div class="data-dia">23/02</div></div>
+            <div class="data-chip"><div class="data-mes">Mar</div><div class="data-dia">16/03</div></div>
+            <div class="data-chip"><div class="data-mes">Abr</div><div class="data-dia">14/04</div></div>
+            <div class="data-chip"><div class="data-mes">Mai</div><div class="data-dia">05/05</div></div>
+            <div class="data-chip"><div class="data-mes">Mai</div><div class="data-dia">26/05</div></div>
+            <div class="data-chip"><div class="data-mes">Jun</div><div class="data-dia">16/06</div></div>
+            <div class="data-chip"><div class="data-mes">Jul</div><div class="data-dia">07/07</div></div>
+            <div class="data-chip"><div class="data-mes">Jul</div><div class="data-dia">28/07</div></div>
+            <div class="data-chip"><div class="data-mes">Ago</div><div class="data-dia">18/08</div></div>
+            <div class="data-chip"><div class="data-mes">Set</div><div class="data-dia">09/09</div></div>
+            <div class="data-chip"><div class="data-mes">Set</div><div class="data-dia">29/09</div></div>
+            <div class="data-chip"><div class="data-mes">Out</div><div class="data-dia">20/10</div></div>
+            <div class="data-chip"><div class="data-mes">Nov</div><div class="data-dia">10/11</div></div>
+            <div class="data-chip"><div class="data-mes">Dez</div><div class="data-dia">01/12</div></div>
+            <div class="data-chip destaque"><div class="data-mes">Dez</div><div class="data-dia">22/12 ⭐</div></div>
+          </div>
+          <div style="margin-top:10px; font-size:11px; background:#fef3c7; color:#92400e; padding:8px; border-radius:12px;">
+            ⭐ <strong>22/12:</strong> Destacar esta data! Última coleta do ano de 2026 antes das festas.
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 3: GUIA DE DESCARTE (COMCAP) -->
+      <section id="screen-guia" class="screen">
+        <!-- 1º SEÇÃO: DESCARTE NAS LIXEIRAS DO CONDOMÍNIO (PROPOSTA 3 - CLEAN/MODERNO) -->
+        <div class="card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; padding:14px; margin-bottom:14px; box-shadow:0 3px 14px rgba(0,0,0,0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+            <div>
+              <span style="background:#ecfdf5; color:#047857; font-size:9.5px; font-weight:800; padding:2px 8px; border-radius:12px; text-transform:uppercase;">
+                🏢 Regimento Interno
+              </span>
+              <h3 style="font-size:14px; font-weight:900; color:#0f172a; margin:4px 0 0 0;">
+                Como funciona o descarte nas lixeiras do nosso condomínio
+              </h3>
+            </div>
+            <span style="font-size:20px;">🌱</span>
+          </div>
+
+          <p style="font-size:11px; color:#475569; margin:0 0 10px 0; line-height:1.4;">
+            Conforme o regimento interno, nosso condomínio conta com três cores de lixeira: <strong>laranja, azul e verde</strong>.
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <!-- 1. Laranja -->
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:10px; padding:8px 10px; display:flex; gap:8px; align-items:flex-start;">
+              <div style="width:30px; height:30px; border-radius:8px; background:#fff7ed; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                🟠
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="color:#c2410c; font-size:12px;">Lixeira Laranja</strong>
+                  <span style="background:#fff7ed; color:#9a3412; font-size:9px; font-weight:700; padding:1px 6px; border-radius:4px;">Orgânicos & Rejeitos</span>
+                </div>
+                <div style="font-size:10.5px; color:#475569; margin-top:2px; line-height:1.35;">
+                  Restos de comida, papel higiênico, fraldas, absorventes e outros resíduos não recicláveis.
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Azul -->
+            <div style="background:#ffffff; border:1px solid #bae6fd; border-radius:10px; padding:8px 10px; display:flex; gap:8px; align-items:flex-start;">
+              <div style="width:30px; height:30px; border-radius:8px; background:#f0f9ff; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                🔵
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="color:#0284c7; font-size:12px;">Lixeira Azul</strong>
+                  <span style="background:#f0f9ff; color:#0369a1; font-size:9px; font-weight:700; padding:1px 6px; border-radius:4px;">Recicláveis</span>
+                </div>
+                <div style="font-size:10.5px; color:#475569; margin-top:2px; line-height:1.35;">
+                  Papel e papelão, plástico, metais e embalagens recicláveis.
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Verde -->
+            <div style="background:#ffffff; border:1px solid #bbf7d0; border-radius:10px; padding:8px 10px; display:flex; gap:8px; align-items:flex-start;">
+              <div style="width:30px; height:30px; border-radius:8px; background:#f0fdf4; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;">
+                🟢
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="color:#166534; font-size:12px;">Lixeira Verde</strong>
+                  <span style="background:#f0fdf4; color:#15803d; font-size:9px; font-weight:700; padding:1px 6px; border-radius:4px;">Vidro</span>
+                </div>
+                <div style="font-size:10.5px; color:#475569; margin-top:2px; line-height:1.35;">
+                  Apenas garrafas, potes e frascos de vidro.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AVISO DE OBRIGATORIEDADE -->
+          <div style="margin-top:10px; padding:8px 10px; background:#fef3c7; border:1px solid #fde68a; border-radius:10px; font-size:10.5px; color:#92400e; display:flex; align-items:center; gap:6px; line-height:1.35;">
+            <span style="font-size:14px; flex-shrink:0;">⚠️</span>
+            <span><strong>É obrigatório</strong> depositar cada resíduo na lixeira correspondente.</span>
+          </div>
+
+          <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #e2e8f0; display:flex; justify-content:space-between; align-items:center; font-size:10.5px; color:#64748b;">
+            <span>📄 Consulte o Regimento Interno completo no <strong>aplicativo SCSEG</strong>.</span>
+          </div>
+        </div>
+
+        <!-- 2º SEÇÃO: GUIA DE SEPARAÇÃO DOS RECICLÁVEIS (COMCAP) -->
+        <div class="card" style="background:linear-gradient(135deg, #15803d, #166534); color:#fff; border:none; margin-bottom:12px;">
+          <div style="display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:20px; font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+            ♻️ Coleta Seletiva Comcap
+          </div>
+          <h2 style="font-size:15px; font-weight:900; text-transform:uppercase; line-height:1.3; margin:0;">
+            O que separar para a coleta seletiva
+          </h2>
+          <p style="font-size:11px; opacity:0.95; margin-top:4px; margin-bottom:8px; line-height:1.4;">
+            Separe materiais recicláveis em sacos plásticos, preferencialmente de cor clara. Os materiais devem estar limpos e o vidro em embalagem separada.
+          </p>
+          <div style="padding-top:6px; border-top:1px solid rgba(255,255,255,0.2); font-size:11px; font-weight:700; color:#ffffff;">
+            👇 Pesquise ou confira o que pode ser destinado à coleta seletiva:
+          </div>
+        </div>
+
+        <input type="text" id="busca-material" placeholder="🔍 Buscar material (ex: isopor, pizza, lata)..." style="width:100%; margin-bottom:12px; padding:9px 12px; border-radius:14px; border:1px solid #cbd5e1; font-size:12px; outline:none; color:#0f172a;">
+
+        <!-- PAPEL -->
+        <div class="card item-descarte" style="border-left: 6px solid #2563eb;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#2563eb;">PAPEL (Lixeira Azul)</div>
+            <span class="tag-badge tag-blue">Azul</span>
+          </div>
+          <div style="margin-top:6px; margin-bottom:6px; font-size:10px; color:#0369a1; background:#f0f9ff; padding:5px 8px; border-radius:6px; border-left:2.5px solid #0284c7; line-height:1.35;">
+            📦 <strong>Atenção ao papelão:</strong> Caixas de papelão deverão ser abertas/desmontadas antes de serem descartadas no compartimento de lixo.
+          </div>
+          <div style="font-size:12px; margin-top:6px;">
+            <p style="color:#166534; font-weight:600; margin-bottom:4px;">✅ PODE:</p>
+            <p style="color:#475569; font-size:11px; margin-bottom:8px;">Jornais, revistas, folhas e folhetos (de preferência sem rasgar nem amassar), embalagens de papel limpas e secas, e caixas de papelão abertas/desmontadas colocadas no local indicado do abrigo.</p>
+            <p style="color:#dc2626; font-weight:600; margin-bottom:4px;">❌ NÃO PODE:</p>
+            <p style="color:#475569; font-size:11px;">Papel carbono, celofane, amanteigado, parafinado, papéis engordurados ou sujos, fitas e etiquetas adesivas, fotografias, toalhas, lenços e guardanapos usados.</p>
+          </div>
+        </div>
+
+        <!-- METAL -->
+        <div class="card item-descarte" style="border-left: 6px solid #eab308;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#b45309;">METAL (Lixeira Amarela)</div>
+            <span class="tag-badge" style="background:#fef08a; color:#854d0e;">Amarela</span>
+          </div>
+          <div style="font-size:12px; margin-top:6px;">
+            <p style="color:#166534; font-weight:600; margin-bottom:4px;">✅ PODE:</p>
+            <p style="color:#475569; font-size:11px; margin-bottom:8px;">Latas limpas de bebidas e de alimentos, panelas, parafusos e pregos, grampos e clipes, fios, objetos de ferro ou latão e aerossóis.</p>
+            <p style="color:#dc2626; font-weight:600; margin-bottom:4px;">❌ NÃO PODE:</p>
+            <p style="color:#475569; font-size:11px;">Latas com tintas, vernizes e outros, restos de materiais tóxicos, esponjas de aço, pilhas e baterias.</p>
+          </div>
+        </div>
+
+        <!-- PLÁSTICO -->
+        <div class="card item-descarte" style="border-left: 6px solid #dc2626;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#dc2626;">PLÁSTICO (Lixeira Vermelha)</div>
+            <span class="tag-badge tag-red">Vermelha</span>
+          </div>
+          <div style="font-size:12px; margin-top:6px;">
+            <p style="color:#166534; font-weight:600; margin-bottom:4px;">✅ PODE:</p>
+            <p style="color:#475569; font-size:11px; margin-bottom:8px;">Embalagens e utensílios como garrafas, frascos e potes, sacos e sacolas, baldes, canetas, brinquedos, canos, tubos e conexões de PVC e radiografias.</p>
+            <p style="color:#dc2626; font-weight:600; margin-bottom:4px;">❌ NÃO PODE:</p>
+            <p style="color:#475569; font-size:11px;">Embalagens metalizadas, adesivos, cabos de panela, espuma de colchão, esponjas de cozinha, embalagens de produtos tóxicos.</p>
+          </div>
+        </div>
+
+        <!-- VIDRO -->
+        <div class="card item-descarte" style="border-left: 6px solid #16a34a;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#16a34a;">VIDRO (Lixeira Verde)</div>
+            <span class="tag-badge tag-green">Verde</span>
+          </div>
+          <div style="font-size:12px; margin-top:6px;">
+            <p style="color:#166534; font-weight:600; margin-bottom:4px;">✅ PODE:</p>
+            <p style="color:#475569; font-size:11px; margin-bottom:8px;">Embalagens (garrafas, pote e frascos) vazias, copos, taças, refratários, pirex, cristais e espelhos (sem película).</p>
+            <p style="color:#dc2626; font-weight:600; margin-bottom:4px;">❌ NÃO PODE:</p>
+            <p style="color:#475569; font-size:11px;">Vidros planos com películas, utensílios de cerâmica, porcelana e lâmpadas.</p>
+          </div>
+        </div>
+
+        <!-- OUTROS -->
+        <div class="card item-descarte" style="border-left: 6px solid #ea580c;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#ea580c;">OUTROS (Lixeira Laranja)</div>
+            <span class="tag-badge tag-orange">Laranja</span>
+          </div>
+          <div style="font-size:12px; margin-top:6px;">
+            <p style="color:#166534; font-weight:600; margin-bottom:4px;">✅ PODE:</p>
+            <p style="color:#475569; font-size:11px; margin-bottom:8px;">Isopor (EPS) e caixas longa vida (multi-material).</p>
+            <p style="color:#dc2626; font-weight:600; margin-bottom:4px;">❌ NÃO PODE:</p>
+            <p style="color:#475569; font-size:11px;">Couros (calçados e bolsas), peças em tecido e material acrílico em geral.</p>
+          </div>
+        </div>
+
+        <!-- DESTAQUE ESPECIAL: RESÍDUOS ESPECIAIS & PERIGOSOS (NÃO VAI NA SELETIVA) -->
+        <div class="card" style="border: 2px solid #ef4444; background: #fef2f2; margin-top:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="card-title" style="color:#991b1b; font-size:13px; font-weight:900;">🚨 RESÍDUOS ESPECIAIS & PERIGOSOS</div>
+            <span class="tag-badge tag-red" style="font-size:9px;">NÃO VAI NA SELETIVA</span>
+          </div>
+          <p style="font-size:11px; color:#7f1d1d; margin-top:4px; line-height:1.4;">
+            <strong>Nunca jogue na Coleta Seletiva nem no lixo comum!</strong> Devem seguir para logística reversa ou Ecopontos Comcap:
+          </p>
+          <ul style="font-size:11px; color:#991b1b; padding-left:16px; margin-top:6px; line-height:1.5;">
+            <li><strong>🔋 Pilhas e Baterias:</strong> Pontos de coleta em supermercados ou Ecopontos.</li>
+            <li><strong>💊 Remédios Vencidos:</strong> Lixeiras de medicamentos em farmácias e postos.</li>
+            <li><strong>🛢️ Óleo Usado:</strong> Armazenar em garrafa PET e entregar no Ecoponto.</li>
+            <li><strong>💡 Lâmpadas:</strong> Lojas de materiais elétricos ou Ecopontos.</li>
+            <li><strong>💻 Eletrônicos:</strong> Ecopontos Municipais Comcap.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TELA 4: DICAS E BOAS PRÁTICAS DE CONVIVÊNCIA -->
+      <section id="screen-dicas" class="screen">
+        <div class="card" style="background:linear-gradient(135deg, #15803d, #166534); color:#fff; border:none; margin-bottom:12px;">
+          <div style="display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:20px; font-size:10px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+            💡 Cuidados & Boas Práticas
+          </div>
+          <h2 style="font-size:18px; font-weight:800;">Dicas de Convivência</h2>
+          <p style="font-size:11px; opacity:0.9; margin-top:2px;">Pequenas atitudes diárias que preservam nosso condomínio e mantêm o Villa di Lucca limpo e sustentável.</p>
+        </div>
+
+        <!-- Barra de controle dos Accordions de Dicas -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding:0 2px; flex-wrap:wrap; gap:4px;">
+          <span style="font-size:11px; font-weight:700; color:#475569;">Toque em um tema para abrir as orientações:</span>
+          <button id="btn-toggle-dicas-standalone" style="background:none; border:none; color:#15803d; font-size:11px; font-weight:800; cursor:pointer;" type="button">▼ Expandir Todos</button>
+        </div>
+
+        <!-- 1. ENCANAMENTO, RALOS & ESGOTO (ALERTA CRÍTICO • 3 DICAS) -->
+        <details class="card" style="border-left: 5px solid #dc2626; margin-bottom: 8px;">
+          <summary style="font-weight:800; font-size:12px; color:#b91c1c; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:22px;">🚨</span>
+              <div>
+                <div style="font-size:13px; font-weight:800; color:#b91c1c;">Encanamento, Ralos & Esgoto</div>
+                <div style="font-size:10px; color:#64748b; font-weight:700;">Alerta Crítico • 3 dicas</div>
+              </div>
+            </div>
+            <span style="font-size:9.5px; color:#dc2626; background:#fef2f2; padding:3px 8px; border-radius:12px; font-weight:700;">▼ Ver dicas</span>
+          </summary>
+          
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px; font-size:11px;">
+            <p style="font-size:11px; color:#64748b; margin-bottom:2px;">Evite entupimentos graves e prejuízos rateados entre os moradores:</p>
+            
+            <div style="background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; padding:10px;">
+              <strong style="color:#991b1b;">🚫 É PROIBIDO no Vaso Sanitário:</strong>
+              <p style="color:#7f1d1d; margin-top:2px;">
+                <strong>Nunca jogue lenço umedecido, fralda, absorvente, cotonete ou qualquer outro tipo de lixo idêntico a esses componentes no vaso sanitário.</strong> Esses materiais não se dissolvem, causam entupimento da <strong>bomba elevatória de esgoto</strong> e prejuízo para todos os moradores.
+              </p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+              <strong style="color:#0f172a;">🚰 Peneirinha no Ralo da Cozinha:</strong>
+              <p style="color:#475569; margin-top:2px;">Use peneirinha protetora no ralo da pia da cozinha para reter restos de alimentos e evitar entupimentos na tubulação.</p>
+            </div>
+
+            <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px;">
+              <strong style="color:#92400e;">🛢️ Nunca Jogue Óleo na Pia:</strong>
+              <p style="color:#78350f; margin-top:2px;">O óleo de cozinha entope os canos e polui as águas. Armazene em garrafa PET e leve ao Ecoponto.</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 2. ABRIGO DE RESÍDUOS & CONTAINERS (REGRAS DA LIXEIRA • 6 DICAS) -->
+        <details class="card" style="border-left: 5px solid #15803d; margin-bottom: 8px;">
+          <summary style="font-weight:800; font-size:12px; color:#15803d; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:22px;">🏢</span>
+              <div>
+                <div style="font-size:13px; font-weight:800; color:#15803d;">Abrigo de Resíduos & Containers</div>
+                <div style="font-size:10px; color:#64748b; font-weight:700;">Regras da Lixeira • 6 dicas</div>
+              </div>
+            </div>
+            <span style="font-size:9.5px; color:#15803d; background:#f0fdf4; padding:3px 8px; border-radius:12px; font-weight:700;">▼ Ver dicas</span>
+          </summary>
+
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px; font-size:11px;">
+            <p style="font-size:11px; color:#64748b; margin-bottom:2px;">Regras de uso da lixeira e descarte consciente:</p>
+
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:10px;">
+              <strong style="color:#166534;">🗑️ Saco de Lixo DENTRO do Container:</strong>
+              <p style="color:#14532d; margin-top:2px;"><strong>Sempre coloque o saco de lixo DENTRO do container.</strong> Nunca deixe em cima ou ao lado no chão.</p>
+            </div>
+
+            <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px;">
+              <strong style="color:#92400e;">⚠️ Lixeira do Bloco Cheia:</strong>
+              <p style="color:#78350f; margin-top:2px;">Se a lixeira do bloco estiver cheia, leve o lixo até a lixeira principal ou armazene em sua unidade até o próximo dia.</p>
+            </div>
+
+            <div style="background:#fef2f2; border:1px solid #fca5a5; border-radius:10px; padding:10px;">
+              <strong style="color:#991b1b;">🚫 Não é Permitido Móveis e Entulhos:</strong>
+              <p style="color:#7f1d1d; margin-top:2px;"><strong>Não é permitido depositar móveis e entulhos nas lixeiras.</strong> Para esses materiais, consulte os Ecopontos ou agende volumosos na aba "Pontos".</p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+              <strong style="color:#0f172a;">🔒 Tampas Sempre Fechadas:</strong>
+              <p style="color:#475569; margin-top:2px;">Mantenha as tampas dos containers sempre fechadas para evitar moscas, mau cheiro e animais.</p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+              <strong style="color:#0f172a;">📦 Caixas de Papelão:</strong>
+              <p style="color:#475569; margin-top:2px;">Caixas de papelão deverão ser abertas/desmontadas antes de serem descartadas no compartimento de lixo.</p>
+            </div>
+
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:10px;">
+              <strong style="color:#166534;">🚿 Enxágue Rápido nas Embalagens:</strong>
+              <p style="color:#14532d; margin-top:2px;">Passe uma água rápida em potes de iogurte, caixas de leite e latas de molho antes de descartar. Embalagens limpas não atraem formigas e não geram mau cheiro no abrigo de resíduos.</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- 3. CONVIVÊNCIA, CORREDORES & PETS (ÁREAS COMUNS • 4 DICAS) -->
+        <details class="card" style="border-left: 5px solid #0284c7; margin-bottom: 8px;">
+          <summary style="font-weight:800; font-size:12px; color:#0369a1; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:22px;">🤝</span>
+              <div>
+                <div style="font-size:13px; font-weight:800; color:#0369a1;">Convivência, Corredores & Pets</div>
+                <div style="font-size:10px; color:#64748b; font-weight:700;">Áreas Comuns • 4 dicas</div>
+              </div>
+            </div>
+            <span style="font-size:9.5px; color:#0284c7; background:#f0f9ff; padding:3px 8px; border-radius:12px; font-weight:700;">▼ Ver dicas</span>
+          </summary>
+
+          <div style="margin-top:10px; display:flex; flex-direction:column; gap:8px; font-size:11px;">
+            <p style="font-size:11px; color:#64748b; margin-bottom:2px;">Higiene e respeito mútuo nas áreas comuns:</p>
+
+            <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px;">
+              <strong style="color:#92400e;">🚪 Sem Lixo na Porta dos Apartamentos:</strong>
+              <p style="color:#78350f; margin-top:2px;">Não deixe restos de comida ou lixo orgânico próximo à porta do apartamento, principalmente no verão. Isso atrai pragas e pode causar problemas de verme nos corredores.</p>
+            </div>
+
+            <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:10px; padding:10px;">
+              <strong style="color:#991b1b;">🪟 Jamais Jogue Lixo pela Janela:</strong>
+              <p style="color:#7f1d1d; margin-top:2px;">Jamais jogue lixo pela janela. Além de sujar o condomínio, é crime ambiental.</p>
+            </div>
+
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+              <strong style="color:#0f172a;">🐕 Recolha Sempre as Fezes do seu Pet:</strong>
+              <p style="color:#475569; margin-top:2px;">Recolha sempre as fezes do seu animal nas áreas comuns.</p>
+            </div>
+
+            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:10px;">
+              <strong style="color:#166534;">💧 Recomendação: Dilua o Xixi do Animal:</strong>
+              <p style="color:#14532d; margin-top:2px;">Recomendação: leve uma garrafa com água para diluir o xixi do animal na calçada, evitando odor e desconforto para os vizinhos.</p>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- TELA 5: ECOPONTOS & PONTOS DE DESCARTE (PADRONIZADA COM SANFONAS) -->
+      <section id="screen-pontos" class="screen">
+        <!-- SEÇÃO 1: ECOPONTOS -->
+        <div style="margin-bottom:20px;">
+          <!-- CARD DE INTRODUÇÃO GRADIENTE (VERDE TEAL) -->
+          <div class="card" style="background:linear-gradient(135deg, #0d9488, #14b8a6); color:#fff; border:none; margin-bottom:10px; box-shadow:0 4px 12px rgba(13,148,136,0.15);">
+            <div style="display:inline-block; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:12px; font-size:9.5px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+              🏛️ Descarte Gratuito da Prefeitura
+            </div>
+            <h2 style="font-size:18px; font-weight:900; line-height:1.2; margin:0;">Ecopontos</h2>
+            <p style="font-size:11.5px; color:#ccfbf1; margin-top:6px; line-height:1.45;">
+              São espaços públicos disponibilizados pela Prefeitura de Florianópolis para o descarte correto de resíduos que não devem ser colocados no lixo comum. Utilizar os Ecopontos contribui para a limpeza urbana, a preservação do meio ambiente e a qualidade de vida na nossa cidade.
+            </p>
+          </div>
+
+          <!-- SANFONA 1: O QUE POSSO LEVAR AO ECOPONTO (DE FORMA GRATUITA) -->
+          <details class="card" style="border-left: 5px solid #0d9488; margin-bottom:8px;">
+            <summary style="font-weight:800; font-size:12px; color:#0d9488; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+              <span>♻️ O que posso levar ao Ecoponto</span>
+              <span style="font-size:9.5px; color:#64748b; font-weight:700;">▼ 12 materiais</span>
+            </summary>
+            
+            <div style="margin-top:10px;">
+              <p style="font-size:11px; color:#64748b; margin-bottom:8px;">Materiais aceitos gratuitamente nos Ecopontos da Comcap:</p>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px;">
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🧱 <strong>Entulhos de obras</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🛋️ <strong>Móveis velhos</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🌿 <strong>Restos de poda</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🪵 <strong>Madeiras</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  ♻️ <strong>Recicláveis</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  💻 <strong>Eletrônicos</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🛢️ <strong>Óleo de cozinha</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🛞 <strong>Pneus</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🔋 <strong>Pilhas/baterias</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🔌 <strong>Eletrodomésticos</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  📦 <strong>Volumosos</strong>
+                </div>
+                <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:6px 8px; color:#134e4a;">
+                  🍎 <strong>Orgânicos</strong>
+                </div>
+              </div>
+
+              <p style="font-size:10px; color:#64748b; font-style:italic; margin-top:8px; padding-top:6px; border-top:1px dashed #e2e8f0;">
+                * Cada material tem uma quantidade limite gratuita, verificável no site da Comcap.
+              </p>
+            </div>
+          </details>
+
+          <!-- SANFONA 2: ECOPONTOS MAIS PRÓXIMOS -->
+          <details class="card" style="border-left: 5px solid #0f766e; margin-bottom:8px;">
+            <summary style="font-weight:800; font-size:12px; color:#0f766e; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+              <span>🏛️ Ecopontos Mais Próximos</span>
+              <span style="font-size:9.5px; color:#64748b; font-weight:700;">▼ Ver locais</span>
+            </summary>
+
+            <div style="margin-top:10px;">
+              <div style="padding:10px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; margin-bottom:8px; font-size:11px;">
+                <strong style="color:#0f172a;">1. Ecoponto Rio Vermelho (MAIS PRÓXIMO)</strong><br>
+                Rua Cândido Pereira dos Anjos, s/n<br>
+                <strong style="color:#15803d;">Horário:</strong> Todos os dias, 7h às 11h50 e 13h às 19h
+              </div>
+
+              <div style="padding:10px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; margin-bottom:8px; font-size:11px;">
+                <strong style="color:#0f172a;">2. Ecoponto Ingleses</strong><br>
+                Rua Via Local Insular (atrás da CELESC)<br>
+                <strong style="color:#15803d;">Horário:</strong> Todos os dias, 7h às 12h e 13h às 19h
+              </div>
+
+              <div style="padding:10px; background:#f8fafc; border-radius:12px; border:1px solid #e2e8f0; font-size:11px;">
+                <strong style="color:#0f172a;">3. Ecoponto Canasvieiras</strong><br>
+                Rua Desembargador Maurílio Coimbra (junto à AMOCAN)<br>
+                <strong style="color:#15803d;">Horário:</strong> Seg-Sex: 7h30-12h e 13h-17h30 | Sáb: 7h30-11h30
+              </div>
+
+              <!-- LINK DE REFERÊNCIA DA COMCAP -->
+              <div style="margin-top:10px; padding-top:8px; border-top:1px solid #e2e8f0; font-size:11px; color:#475569; line-height:1.4;">
+                Para mais informações sobre limites de quantidade e regras atualizadas, consulte o site oficial da Comcap: <a href="https://www.pmf.sc.gov.br/sistemas/comcap/home.php" target="_blank" rel="noopener noreferrer" style="color:#15803d; font-weight:800; text-decoration:underline;">https://www.pmf.sc.gov.br/sistemas/comcap/home.php</a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- DIVISOR VISUAL ENTRE SEÇÕES -->
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, #cbd5e1, transparent); margin: 20px 0;">
+
+        <!-- SEÇÃO 2: SERVIÇO DE VOLUMOSOS -->
+        <div style="margin-bottom:20px;">
+          <!-- CARD DE INTRODUÇÃO GRADIENTE (AZUL) -->
+          <div class="card" style="background:linear-gradient(135deg, #1e40af, #3b82f6); color:#fff; border:none; margin-bottom:10px; box-shadow:0 4px 12px rgba(30,64,175,0.15);">
+            <div style="display:inline-block; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:12px; font-size:9.5px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+              🛋️ Coleta Agendada na Calçada
+            </div>
+            <h3 style="font-size:18px; font-weight:900; line-height:1.2; margin:0; color:#fff;">Serviço de Volumosos</h3>
+            <p style="font-size:11.5px; color:#dbeafe; margin-top:6px; line-height:1.45;">
+              Para móveis e itens grandes, a Prefeitura recolhe na porta com agendamento prévio. Não descarte móveis ou entulhos na lixeira comum!
+            </p>
+          </div>
+
+          <details class="card" style="border-left: 5px solid #2563eb; margin-bottom:8px;">
+            <summary style="font-weight:800; font-size:12px; color:#1d4ed8; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+              <span>🛋️ Como Agendar a Coleta na Porta</span>
+              <span style="font-size:9.5px; color:#64748b; font-weight:700;">▼ Contato, limites e regras</span>
+            </summary>
+
+            <div style="margin-top:10px;">
+              <p style="font-size:11px; color:#475569; margin-bottom:8px;">
+                Para móveis e itens grandes, a Prefeitura recolhe na porta com agendamento:
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:8px; font-size:11px;">
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:10px;">
+                  <strong>💬 Contato / WhatsApp Comcap:</strong><br>
+                  <strong>(48) 3216-0202</strong> <span style="color:#64748b;">(segunda a sexta, 8h às 17h, apenas mensagens e fotos).</span>
+                  <a href="https://wa.me/554832160202?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20a%20coleta%20de%20volumosos%20da%20Comcap." target="_blank" style="margin-top:6px; background:#059669; color:#fff; font-weight:700; font-size:11px; padding:8px 12px; border-radius:10px; text-decoration:none; display:block; text-align:center;">
+                    💬 Agendar Coleta pelo WhatsApp (48) 3216-0202
+                  </a>
+                </div>
+
+                <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px; padding:8px 10px;">
+                  <strong style="color:#166534;">📏 Limite:</strong> Até <strong>1 metro cúbico</strong> por residência (tamanho de uma caixa d'água de 1000L).
+                </div>
+
+                <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:8px 10px;">
+                  <strong style="color:#92400e;">📍 Local:</strong> O resíduo deve ser deixado na calçada na data marcada.
+                </div>
+
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px;">
+                  <strong>📦 O que recolhem:</strong> Móveis, eletrodomésticos, restos de construção ensacados, latas, pneus e madeiras.<br>
+                  <span style="color:#dc2626; font-weight:700;">⚠️ Nota: Podas vão para a coleta de verdes, não aqui.</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- DIVISOR VISUAL ENTRE SEÇÕES -->
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, #cbd5e1, transparent); margin: 20px 0;">
+
+        <!-- SEÇÃO 3: PONTOS DE ENTREGA VOLUNTÁRIA (PEV) -->
+        <div style="margin-bottom:20px;">
+          <!-- CARD DE INTRODUÇÃO GRADIENTE (VERDE ESMERALDA) -->
+          <div class="card" style="background:linear-gradient(135deg, #15803d, #16a34a); color:#fff; border:none; margin-bottom:10px; box-shadow:0 4px 12px rgba(21,128,61,0.15);">
+            <div style="display:inline-block; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:12px; font-size:9.5px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">
+              🫙 Ponto de Entrega Voluntária (PEV)
+            </div>
+            <h3 style="font-size:18px; font-weight:900; line-height:1.2; margin:0; color:#fff;">Ponto de Entrega Voluntária de Vidros (PEV)</h3>
+            <p style="font-size:11.5px; color:#dcfce7; margin-top:6px; line-height:1.45;">
+              Os PEVs (Pontos de Entrega Voluntária) são contêineres exclusivos para descarte de vidro, espalhados pela cidade e abertos 24 horas. Todo o material recolhido é doado para associações de triadores.
+            </p>
+          </div>
+
+          <details class="card" style="border-left: 5px solid #16a34a; margin-bottom:8px;">
+            <summary style="font-weight:800; font-size:12px; color:#15803d; outline:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+              <span>🫙 PEV Travessa Olindina Vieira</span>
+              <span style="font-size:9.5px; color:#64748b; font-weight:700;">▼ Aberto 24h • Saiba mais</span>
+            </summary>
+
+            <div style="margin-top:10px;">
+              <!-- 1. ENDEREÇO -->
+              <div style="background:#f1f5f9; padding:10px; border-radius:12px; margin-bottom:8px; font-size:11px;">
+                <div><strong>Local:</strong> Calçada</div>
+                <div><strong>Bairro:</strong> Vargem Grande</div>
+                <div><strong>Logradouro:</strong> Travessa Olindina Vieira dos Santos</div>
+              </div>
+
+              <!-- 2. TEXTO EXPLICATIVO (O QUE É E O QUE PODE/NÃO PODE) -->
+              <div style="font-size:11px; color:#334155; line-height:1.4; margin-bottom:8px;">
+                <p style="margin-bottom:6px;">
+                  Os PEVs são contêineres exclusivos para descarte de vidro, espalhados pela cidade e abertos 24 horas. Todo o material recolhido é doado para associações de triadores.
+                </p>
+
+                <div style="background:#f0fdf4; border-left:3px solid #16a34a; border-radius:8px; padding:8px 10px; margin-bottom:6px;">
+                  <strong style="color:#166534;">✅ O que pode ser depositado:</strong>
+                  <ul style="margin:2px 0 0 14px; padding:0; color:#14532d; font-size:10.5px;">
+                    <li>Garrafas de bebidas, potes de conservas e frascos de perfume.</li>
+                    <li>Copos de vidro (sem películas ou metais).</li>
+                  </ul>
+                </div>
+
+                <div style="background:#fef2f2; border-left:3px solid #dc2626; border-radius:8px; padding:8px 10px;">
+                  <strong style="color:#991b1b;">❌ O que NÃO pode ser depositado:</strong>
+                  <ul style="margin:2px 0 0 14px; padding:0; color:#7f1d1d; font-size:10.5px;">
+                    <li>Espelhos, vidros de janela, box e lâmpadas.</li>
+                    <li>Cerâmicas, porcelanas e cristais.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 3. IMAGEM DA LIXEIRA DA COMCAP -->
+              <div style="border-radius:14px; overflow:hidden; border:1px solid #cbd5e1; margin-top:8px;">
+                <img src="/pev-vargem-grande.jpg" alt="Ponto de Entrega Voluntária (PEV) de Vidros - Comcap" style="width:100%; height:auto; display:block;" onerror="this.src='/mapa-pev.jpg'">
+              </div>
+
+              <!-- 4. BOTÕES DE MAPA -->
+              <div style="margin-top:10px; display:flex; flex-direction:column; gap:6px;">
+                <a href="https://maps.app.goo.gl/dB3usZZKoFYJzecG8" target="_blank" style="background:#059669; color:#fff; font-size:11px; font-weight:800; padding:10px; border-radius:10px; text-decoration:none; text-align:center; display:block;">
+                  🗺️ Rota para o PEV Mais Próximo
+                </a>
+                <a href="https://www.google.com/maps/d/viewer?mid=1OPvnFtSEn5ZqHMRlQFl39pmR17vPQTA&ll=-27.603439306406113%2C-48.490661499999995&z=11" target="_blank" style="background:#f1f5f9; color:#475569; border:1px solid #cbd5e1; font-size:10.5px; font-weight:700; padding:8px; border-radius:10px; text-decoration:none; text-align:center; display:block;">
+                  📍 Consultar Mapa Geral de PEVs
+                </a>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- DIVISOR VISUAL ENTRE SEÇÕES -->
+        <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, #cbd5e1, transparent); margin: 20px 0;">
+
+        <!-- SEÇÃO: ATENDIMENTO & CONTATOS -->
+        <div style="margin-bottom:16px;">
+          <div style="font-size:13px; font-weight:800; color:#0284c7; margin-bottom:2px;">📞 Atendimento e Contatos</div>
+          <p style="font-size:10.5px; color:#64748b; margin-bottom:8px;">Canais da Prefeitura Municipal e Comcap:</p>
+
+          <div class="card" style="background:#0f172a; color:#fff; border:none; margin:0; box-shadow:0 4px 12px rgba(15,23,42,0.2);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="card-title" style="color:#38bdf8; font-size:13px;">📞 Contatos SMMA & Comcap</div>
+              <span class="tag-badge" style="background:#0284c7; color:#fff; font-size:9px;">Florianópolis</span>
+            </div>
+            <p style="font-size:11px; color:#cbd5e1; margin-top:4px;">
+              Canais oficiais para atendimento rápido, dúvidas sobre coletas e solicitações ambientais:
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:10px;">
+              <a href="tel:4839520180" style="background:#0284c7; color:#fff; font-size:11px; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; text-align:center; display:block;">
+                📞 Ligar Comcap
+              </a>
+              <a href="https://www.pmf.sc.gov.br/sistemas/comcap/home.php" target="_blank" rel="noopener noreferrer" style="background:#15803d; color:#fff; font-size:11px; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; text-align:center; display:block;">
+                🌐 Site Comcap
+              </a>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px;">
+              <a href="mailto:meioambiente@floripa.sc.gov.br" style="background:#0369a1; color:#fff; font-size:11px; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; text-align:center; display:block;">
+                ✉️ Enviar E-mail
+              </a>
+              <a href="https://www.instagram.com/meioambientefloripa/" target="_blank" rel="noopener noreferrer" style="background:#be185d; color:#fff; font-size:11px; font-weight:700; padding:8px; border-radius:8px; text-decoration:none; text-align:center; display:block;">
+                📸 Instagram SMMA
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 6: SOBRE O PROJETO -->
+      <section id="screen-sobre" class="screen">
+        <!-- AJUSTE 1: CARD VERDE DO TOPO -->
+        <div class="card card-hero" style="text-align:center; background:linear-gradient(135deg, #15803d 0%, #166534 100%); color:#fff; border:none; padding:20px 14px;">
+          <div style="font-size:32px;">🌱</div>
+          <h2 style="font-size:20px; font-weight:900; margin-top:6px;">EcoCondomínio</h2>
+          <p style="font-size:11px; color:#d1fae5; margin-top:2px;">Villa di Lucca • Vargem Grande • Florianópolis/SC</p>
+          <p style="font-size:11px; color:#ffffff; font-style:italic; margin-top:8px; opacity:0.95; line-height:1.4;">
+            "Informação que transforma o condomínio em um lugar melhor."
+          </p>
+        </div>
+
+        <!-- AJUSTE 2: TEXTO DO PROPÓSITO -->
+        <div class="card">
+          <div class="card-title">💡 Propósito do Projeto</div>
+          <p style="font-size:11.5px; color:#334155; line-height:1.55;">
+            O EcoCondomínio nasceu para facilitar o dia a dia dos moradores do Villa di Lucca, reunindo em um só lugar todas as informações sobre coleta seletiva, Ecopontos e boas práticas ambientais. A ideia é simples: quanto mais informados estivermos, mais limpo e sustentável será o nosso condomínio.
+          </p>
+        </div>
+
+        <!-- AJUSTE 3: ODS DA ONU -->
+        <div class="card">
+          <div class="card-title">🌍 Compromisso com os ODS da ONU</div>
+          <p style="font-size:10.5px; color:#64748b; margin-bottom:8px;">Este projeto apoia os Objetivos de Desenvolvimento Sustentável:</p>
+          
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="background:#fef3c7; border:1px solid #fde68a; border-radius:10px; padding:10px 12px;">
+              <strong style="color:#78350f; font-size:12px;">ODS 11: Cidades e Comunidades Sustentáveis</strong>
+              <p style="font-size:11px; color:#92400e; margin-top:2px; line-height:1.4;">
+                Promovendo a gestão correta de resíduos e a conscientização ambiental no nosso bairro.
+              </p>
+            </div>
+
+            <div style="background:#ffedd5; border:1px solid #fed7aa; border-radius:10px; padding:10px 12px;">
+              <strong style="color:#7c2d12; font-size:12px;">ODS 12: Consumo e Produção Responsáveis</strong>
+              <p style="font-size:11px; color:#9a3412; margin-top:2px; line-height:1.4;">
+                Incentivando a reciclagem, o descarte correto e o consumo consciente no dia a dia do condomínio.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AJUSTE 4: FONTES & REFERÊNCIAS OFICIAIS -->
+        <div class="card">
+          <div class="card-title" style="font-size:12.5px;">📚 Fontes & Referências Oficiais</div>
+          <p style="font-size:11px; color:#64748b; margin-top:3px; margin-bottom:8px; line-height:1.4;">
+            Todo o conteúdo informativo deste aplicativo foi fundamentado e compilado a partir das fontes oficiais listadas abaixo.
+          </p>
+          <div style="display:flex; flex-direction:column; gap:6px; margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <strong style="color:#0f172a; font-size:11px;">🏛️ Prefeitura de Florianópolis (PMF)</strong>
+              <a href="https://www.pmf.sc.gov.br/servicos/index.php?pagina=servpagina&id=260" target="_blank" rel="noopener noreferrer" style="font-size:10.5px; color:#15803d; font-weight:700; text-decoration:underline;">Portal de Serviços ↗</a>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <strong style="color:#0f172a; font-size:11px;">🚜 Comcap Florianópolis</strong>
+              <a href="https://www.pmf.sc.gov.br/sistemas/comcap/home.php" target="_blank" rel="noopener noreferrer" style="font-size:10.5px; color:#15803d; font-weight:700; text-decoration:underline;">Site Comcap ↗</a>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <strong style="color:#0f172a; font-size:11px;">🌿 SMMA Florianópolis</strong>
+              <a href="https://linktr.ee/meioambientefloripa?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAU6UW9leHRuA2FlbQIxMQBwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp6FGSTP3YADfX4nFB10o6BMC9CRmE_8pc_iw8xFSgaRDFodgZZ3ibesvP4fq_aem_MW8WzVug29B4xn4gQDiymw" target="_blank" rel="noopener noreferrer" style="font-size:10.5px; color:#0284c7; font-weight:700; text-decoration:underline;">Linktree SMMA ↗</a>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <strong style="color:#0f172a; font-size:11px;">⚖️ Lei Federal nº 12.305/2010 (PNRS)</strong>
+              <a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2010/lei/l12305.htm" target="_blank" rel="noopener noreferrer" style="font-size:10.5px; color:#6366f1; font-weight:700; text-decoration:underline;">Legislação ↗</a>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
+              <strong style="color:#0f172a; font-size:11px;">🏢 Condomínio Villa di Lucca</strong>
+              <span style="font-size:10.5px; color:#64748b; font-weight:600;">Regimento Interno</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AJUSTE 5: SEÇÃO SOBRE O PROJETO (EXTENSÃO UNIVERSITÁRIA) -->
+        <div class="card" style="border-left: 4px solid #0284c7;">
+          <div class="card-title" style="color:#0369a1; font-size:12.5px;">
+            🎓 Projeto de Extensão Universitária - UNINTER 2026
+          </div>
+          <p style="font-size:11.5px; color:#334155; line-height:1.5; margin-top:4px;">
+            Desenvolvido com foco na inclusão digital e educação ambiental dos moradores do Condomínio Villa di Lucca, Vargem Grande, Florianópolis/SC.
+          </p>
+        </div>
+
+        <!-- AJUSTE 6: RODAPÉ TÉCNICO DISCRETO -->
+        <div style="text-align:center; padding:10px 6px; margin-top:4px; margin-bottom:8px;">
+          <p style="font-size:10px; color:#94a3b8; line-height:1.4; margin:0;">
+            Desenvolvido com tecnologia pura e leve • HTML5, CSS3 & JavaScript Vanilla<br>
+            Florianópolis/SC • 2026
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Menu de Navegação Flutuante Inferior Estilo iOS -->
+    <nav class="nav-bar-float" aria-label="Navegação do aplicativo">
+      <button class="nav-item active" data-screen="home">
+        <span class="nav-icon">🌱</span>
+        <span class="nav-label">Início</span>
+      </button>
+      <button class="nav-item" data-screen="agenda">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Agenda</span>
+      </button>
+      <button class="nav-item" data-screen="guia">
+        <span class="nav-icon">♻️</span>
+        <span class="nav-label">Guia</span>
+      </button>
+      <button class="nav-item" data-screen="dicas">
+        <span class="nav-icon">💡</span>
+        <span class="nav-label">Dicas</span>
+      </button>
+      <button class="nav-item" data-screen="pontos">
+        <span class="nav-icon">📍</span>
+        <span class="nav-label">Pontos</span>
+      </button>
+      <button class="nav-item" data-screen="sobre">
+        <span class="nav-icon">ℹ️</span>
+        <span class="nav-label">Sobre</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
