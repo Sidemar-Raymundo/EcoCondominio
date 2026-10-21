@@ -1,8 +1,0 @@
-{
-  "name": "Remix EcoCondomínio",
-  "description": "Aplicativo PWA para gestão de resíduos e educação ambiental do Condomínio Vila di Lucca, Vargem Grande, Florianópolis/SC.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}
