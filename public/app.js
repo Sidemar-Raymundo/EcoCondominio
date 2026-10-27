@@ -569,3 +569,28 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('offline', updateOnlineStatus);
   updateOnlineStatus();
 });
+
+
+// Remove o iframe de propaganda da Netlify
+setTimeout(() => {
+    const netlifyIframes = document.querySelectorAll('iframe[src*="netlify"]');
+    netlifyIframes.forEach(iframe => {
+        iframe.remove();
+    });
+    
+    // Observer para remover caso o iframe seja injetado depois
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.tagName === 'IFRAME' && node.src && node.src.includes('netlify')) {
+                    node.remove();
+                }
+            });
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}, 1000);

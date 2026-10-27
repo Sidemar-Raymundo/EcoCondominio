@@ -1323,3 +1323,28 @@ body {
     bottom: 20px;
   }
 }
+
+
+
+/* Remove o selo "Powered by Netlify" */
+iframe[src*="netlify"],
+iframe[src*="netlify.app"],
+iframe[src*="netlify.com"],
+iframe[id*="netlify"],
+iframe[class*="netlify"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    z-index: -1 !important;
+}
+
+/* Garante que a barra de navegação fique sempre por cima */
+.bottom-nav {
+    z-index: 99999 !important;
+    position: fixed !important;
+}
